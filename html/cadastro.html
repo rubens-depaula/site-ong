@@ -21,10 +21,10 @@
         href="/css/style.css"
     >
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
-        defer
-    ></script>
+    <link
+        rel="stylesheet"
+        href="/css/accessibility.css"
+    >
 
     <script
         type="module"
@@ -34,6 +34,13 @@
 
 <body>
 
+    <a
+        class="skip-link"
+        href="#app"
+    >
+        Pular para o conteúdo principal
+    </a>
+
     <header>
         <p>ONG Social</p>
 
@@ -42,23 +49,17 @@
             aria-label="Navegação principal"
         >
 
-            <input
-                type="checkbox"
-                id="menu-toggle"
-                class="menu-toggle"
-            >
-
-            <label
-                for="menu-toggle"
+            <button
+                type="button"
                 class="menu-button"
-                aria-label="Abrir ou fechar menu"
+                aria-label="Abrir menu"
                 aria-expanded="false"
                 aria-controls="main-menu"
             >
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
 
             <ul
                 id="main-menu"
@@ -109,6 +110,8 @@
     <main
         id="app"
         class="container"
+    
+        tabindex="-1"
     >
 
         <section aria-labelledby="titulo-cadastro">
