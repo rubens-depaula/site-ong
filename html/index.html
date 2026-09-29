@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Página inicial da ONG Social, com informações sobre a organização e formas de contato."
+    >
+
+    <title>ONG Social - Início</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
+        defer
+    ></script>
+
+    <script
+        type="module"
+        src="/js/main.js"
+    ></script>
+</head>
+
+<body>
+
+    <header>
+        <p>ONG Social</p>
+
+        <nav
+            class="main-nav"
+            aria-label="Navegação principal"
+        >
+
+            <input
+                type="checkbox"
+                id="menu-toggle"
+                class="menu-toggle"
+            >
+
+            <label
+                for="menu-toggle"
+                class="menu-button"
+                aria-label="Abrir ou fechar menu"
+                aria-expanded="false"
+                aria-controls="main-menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul
+                id="main-menu"
+                class="menu"
+            >
+                <li>
+                    <a href="index.html">
+                        Início
+                    </a>
+                </li>
+
+                <li class="has-submenu">
+                    <a href="projetos.html">
+                        Projetos
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="projetos.html#doacoes">
+                                Doações
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="projetos.html#voluntariado">
+                                Voluntariado
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="cadastro.html">
+                        Cadastro
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <main
+        id="app"
+        class="container"
+    >
+
+        <section id="sobre">
+
+            <h1>Bem-vindo à nossa ONG</h1>
+
+            <picture>
+                <source
+                    srcset="/imagens/ong.avif"
+                    type="image/avif"
+                >
+
+                <source
+                    srcset="/imagens/ong.webp"
+                    type="image/webp"
+                >
+
+                <img
+                    src="/imagens/ong.png"
+                    alt="Voluntários e crianças reunidos em uma atividade comunitária de desenho"
+                >
+            </picture>
+
+            <h2>Quem somos</h2>
+
+            <p>
+                Somos uma organização dedicada ao desenvolvimento de ações
+                sociais e ao apoio à comunidade. Nosso objetivo é promover
+                iniciativas que contribuam para a melhoria da qualidade de
+                vida das pessoas.
+            </p>
+
+        </section>
+
+
+        <section id="contato">
+
+            <h2>Entre em contato</h2>
+
+            <p>
+                E-mail:
+                <a href="mailto:contato@ong.org.br">
+                    contato@ong.org.br
+                </a>
+            </p>
+
+            <p>
+                Telefone:
+                <a href="tel:+5519999999999">
+                    (19) 99999-9999
+                </a>
+            </p>
+
+            <p>
+                Atendimento de segunda a sexta-feira, das 8h às 17h.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            &copy; 2026 ONG Social.
+            Todos os direitos reservados.
+        </p>
+    </footer>
+
+</body>
+
+</html>

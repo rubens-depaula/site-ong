@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Conheça os projetos, campanhas de doação e oportunidades de voluntariado da ONG Social."
+    >
+
+    <title>ONG Social - Projetos</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
+        defer
+    ></script>
+
+    <script
+        type="module"
+        src="/js/main.js"
+    ></script>
+</head>
+
+<body>
+
+    <header>
+        <p>ONG Social</p>
+
+        <nav
+            class="main-nav"
+            aria-label="Navegação principal"
+        >
+
+            <input
+                type="checkbox"
+                id="menu-toggle"
+                class="menu-toggle"
+            >
+
+            <label
+                for="menu-toggle"
+                class="menu-button"
+                aria-label="Abrir ou fechar menu"
+                aria-expanded="false"
+                aria-controls="main-menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <ul
+                id="main-menu"
+                class="menu"
+            >
+                <li>
+                    <a href="index.html">
+                        Início
+                    </a>
+                </li>
+
+                <li class="has-submenu">
+
+                    <a href="projetos.html">
+                        Projetos
+                    </a>
+
+                    <ul class="submenu">
+
+                        <li>
+                            <a href="projetos.html#doacoes">
+                                Doações
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="projetos.html#voluntariado">
+                                Voluntariado
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="cadastro.html">
+                        Cadastro
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <main
+        id="app"
+        class="container grid-12"
+    >
+
+        <section
+            id="apresentacao"
+            class="col-12"
+        >
+
+            <h1>Projetos da ONG</h1>
+
+            <p>
+                Conheça nossas ações e descubra como participar,
+                contribuindo por meio de doações ou trabalho voluntário.
+            </p>
+
+            <picture>
+
+                <source
+                    srcset="/imagens/ong.avif"
+                    type="image/avif"
+                >
+
+                <source
+                    srcset="/imagens/ong.webp"
+                    type="image/webp"
+                >
+
+                <img
+                    src="/imagens/ong.png"
+                    alt="Voluntários e crianças participando de uma atividade comunitária"
+                >
+
+            </picture>
+
+        </section>
+
+
+        <section
+            id="projetos-dinamicos"
+            class="col-12"
+            aria-labelledby="titulo-participacao"
+        >
+
+            <h2 id="titulo-participacao">
+                Formas de participar
+            </h2>
+
+            <div
+                id="project-list"
+                class="grid-12"
+            ></div>
+
+        </section>
+
+
+        <template id="project-card-template">
+
+            <article
+                class="project-card col-12 tablet-col-6"
+            >
+
+                <span class="badge"></span>
+
+                <h2 class="project-title"></h2>
+
+                <p class="project-description"></p>
+
+                <p class="project-details"></p>
+
+                <a
+                    class="project-link"
+                    href="cadastro.html"
+                ></a>
+
+            </article>
+
+        </template>
+
+    </main>
+
+
+    <footer>
+        <p>
+            &copy; 2026 ONG Social.
+            Todos os direitos reservados.
+        </p>
+    </footer>
+
+</body>
+
+</html>
