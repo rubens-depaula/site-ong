@@ -801,3 +801,117 @@ button:disabled {
 
     transform: translateY(0);
 }
+
+/* =========================================================
+   MODO ESCURO
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #f8fafc;
+        background-color: #0f172a;
+    }
+
+    h1,
+    h2,
+    h3,
+    legend {
+        color: #f8fafc;
+    }
+
+    header,
+    footer,
+    .menu,
+    .submenu {
+        background-color: #020617;
+    }
+
+    fieldset,
+    input {
+        color: #f8fafc;
+        background-color: #111827;
+        border-color: #64748b;
+    }
+
+    input::placeholder {
+        color: #94a3b8;
+    }
+
+    a {
+        color: #7dd3fc;
+    }
+
+    .alert-info {
+        color: #e0f2fe;
+        background-color: #0c4a6e;
+        border-color: #38bdf8;
+    }
+
+    .badge-success {
+        color: #d1fae5;
+        background-color: #064e3b;
+    }
+
+    .badge-info {
+        color: #dbeafe;
+        background-color: #1e3a8a;
+    }
+
+    .toast-success {
+        color: #d1fae5;
+        background-color: #064e3b;
+        border-color: #10b981;
+    }
+}
+
+
+/* =========================================================
+   ALTO CONTRASTE
+   ========================================================= */
+
+@media (prefers-contrast: more) {
+    body {
+        color: #000000;
+        background-color: #ffffff;
+    }
+
+    header,
+    footer,
+    .menu,
+    .submenu {
+        color: #ffffff;
+        background-color: #000000;
+    }
+
+    h1,
+    h2,
+    h3,
+    legend {
+        color: #000000;
+    }
+
+    a {
+        color: #0047ab;
+        text-decoration: underline;
+    }
+
+    fieldset,
+    input {
+        color: #000000;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+    }
+
+    button {
+        color: #ffffff;
+        background-color: #000000;
+        border: 2px solid #ffffff;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+        outline: 4px solid #f59e0b;
+        outline-offset: 4px;
+    }
+}
