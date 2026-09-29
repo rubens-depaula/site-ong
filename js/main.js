@@ -13,7 +13,8 @@ import {
 } from "./modules/form.js";
 
 import {
-    handleMenuChange
+    handleMenuToggle,
+    handleMenuKeydown
 } from "./modules/ui.js";
 
 
@@ -27,6 +28,11 @@ document.addEventListener(
 );
 
 document.addEventListener(
+    "click",
+    handleMenuToggle
+);
+
+document.addEventListener(
     "input",
     handleFormInput
 );
@@ -37,8 +43,8 @@ document.addEventListener(
 );
 
 document.addEventListener(
-    "change",
-    handleMenuChange
+    "keydown",
+    handleMenuKeydown
 );
 
 window.addEventListener(

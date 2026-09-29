@@ -1,0 +1,176 @@
+/* =========================================================
+   ONG SOCIAL
+   Melhorias de acessibilidade
+   ========================================================= */
+
+
+/* =========================================================
+   1. SKIP LINK
+   ========================================================= */
+
+.skip-link {
+    position: fixed;
+    top: 0;
+    left: var(--space-4);
+
+    padding: var(--space-3) var(--space-4);
+
+    color: var(--color-white);
+    background-color: var(--color-primary-900);
+
+    font-weight: 700;
+    text-decoration: none;
+
+    border-radius: var(--radius-sm);
+
+    transform: translateY(-150%);
+
+    transition: transform 0.2s ease;
+
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    transform: translateY(var(--space-4));
+
+    outline: 3px solid var(--color-accent-600);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   2. BOTÃO HAMBURGER ACESSÍVEL
+   ========================================================= */
+
+.menu-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.75rem;
+    height: 2.75rem;
+
+    padding: 0;
+
+    gap: 0.35rem;
+
+    color: var(--color-white);
+    background: transparent;
+
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transform: none;
+}
+
+.menu-button:hover:not(:disabled) {
+    background-color: rgb(255 255 255 / 10%);
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+.menu-button:active:not(:disabled) {
+    background-color: rgb(255 255 255 / 15%);
+
+    box-shadow: none;
+
+    transform: none;
+}
+
+.menu-button:focus-visible {
+    outline: 3px solid var(--color-accent-600);
+    outline-offset: 3px;
+}
+
+
+/* ---------- Barras do hamburger ---------- */
+
+.menu-button span {
+    display: block;
+
+    width: 1.75rem;
+    height: 2px;
+
+    background-color: currentColor;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+/* =========================================================
+   3. ABERTURA DO MENU MOBILE
+   ========================================================= */
+
+.main-nav.is-open .menu {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* ---------- Hamburger vira X ---------- */
+
+.main-nav.is-open .menu-button span:nth-child(1) {
+    transform: translateY(0.45rem) rotate(45deg);
+}
+
+.main-nav.is-open .menu-button span:nth-child(2) {
+    opacity: 0;
+}
+
+.main-nav.is-open .menu-button span:nth-child(3) {
+    transform: translateY(-0.45rem) rotate(-45deg);
+}
+
+
+/* =========================================================
+   4. PÁGINA ATUAL
+   ========================================================= */
+
+.menu a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3rem;
+}
+
+
+/* =========================================================
+   5. DESKTOP
+   ========================================================= */
+
+@media (min-width: 768px) {
+    .menu-button {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   6. MOVIMENTO REDUZIDO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+}
