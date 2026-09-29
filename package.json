@@ -1,22 +1,21 @@
 {
   "name": "site-ong",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Projeto acadêmico front-end da ONG Social com HTML, CSS, JavaScript modular e Vite.",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "node --check js/main.js && node --check js/modules/router.js && node --check js/modules/storage.js && node --check js/modules/projects.js && node --check js/modules/form.js && node --check js/modules/ui.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rubens-depaula/site-ong.git"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Rubens de Paula",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/rubens-depaula/site-ong/issues"
   },
@@ -28,5 +27,8 @@
     "esbuild": "^0.28.2",
     "vite": "^8.3.1",
     "vite-plugin-html": "^3.2.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }
