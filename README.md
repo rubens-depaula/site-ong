@@ -1,6 +1,8 @@
 # ONG Social
 
-Projeto acadêmico de front-end desenvolvido como uma aplicação web para uma organização do terceiro setor. A aplicação reúne páginas institucionais, projetos de doação e voluntariado, formulário de cadastro, navegação responsiva e comportamento SPA com JavaScript modular.
+Projeto acadêmico de front-end desenvolvido como uma aplicação web para uma organização do terceiro setor.
+
+A aplicação reúne páginas institucionais, projetos de doação e voluntariado, formulário de cadastro, navegação responsiva, comportamento SPA com JavaScript modular, acessibilidade por teclado e pipeline de build para produção com Vite.
 
 ## Tecnologias
 
@@ -11,7 +13,9 @@ Projeto acadêmico de front-end desenvolvido como uma aplicação web para uma o
 - ES Modules
 - History API
 - LocalStorage
-- Day.js via CDN
+- Day.js via npm
+- Vite
+- Netlify
 
 ## Estrutura do projeto
 
@@ -22,7 +26,8 @@ site-ong/
 │   ├── projetos.html
 │   └── cadastro.html
 ├── css/
-│   └── style.css
+│   ├── style.css
+│   └── accessibility.css
 ├── imagens/
 │   ├── ong.png
 │   ├── ong.webp
@@ -35,6 +40,11 @@ site-ong/
 │       ├── projects.js
 │       ├── form.js
 │       └── ui.js
+├── package.json
+├── package-lock.json
+├── vite.config.mjs
+├── netlify.toml
+├── .gitignore
 └── README.md
 ```
 
@@ -48,7 +58,13 @@ site-ong/
 - Persistência de estado da interface com LocalStorage
 - Registro de rotas visitadas e posições de rolagem
 - Componentes responsivos com Grid e Flexbox
-- Imagens em PNG, WebP e AVIF
+- Imagens em AVIF, WebP e PNG
+- Modo escuro automático com `prefers-color-scheme`
+- Alto contraste com `prefers-contrast`
+- Navegação por teclado
+- Skip link para o conteúdo principal
+- Menu mobile acessível com atributos ARIA
+- Suporte a `prefers-reduced-motion`
 
 ## Arquitetura JavaScript
 
@@ -56,97 +72,156 @@ O código JavaScript utiliza ES Modules e separação de responsabilidades:
 
 - `main.js`: ponto de entrada e registro dos eventos globais
 - `router.js`: navegação SPA e integração com History API
-- `storage.js`: persistência de estado em LocalStorage
+- `storage.js`: persistência de estado no LocalStorage
 - `projects.js`: geração dinâmica dos projetos a partir de templates
 - `form.js`: validação e submissão do formulário
 - `ui.js`: feedback visual, menu mobile e estados da interface
+
+A biblioteca Day.js é instalada por npm e incorporada ao bundle gerado pelo Vite.
 
 ## Pré-requisitos
 
 Para executar o projeto localmente são necessários:
 
-- navegador moderno com suporte a ES Modules, History API e LocalStorage;
-- Python 3 para iniciar o servidor HTTP local;
-- Git para clonar e versionar o repositório;
-- acesso à internet para carregar a biblioteca Day.js via CDN.
+- Node.js
+- npm
+- Git
+- navegador moderno com suporte a ES Modules, History API e LocalStorage
 
-Node.js não é obrigatório para executar a aplicação, mas pode ser utilizado para verificar a sintaxe dos arquivos JavaScript durante o desenvolvimento.
-
-## Instalação e execução local
-
-Clone o repositório e acesse a pasta do projeto:
+## Instalação
 
 ```bash
 git clone https://github.com/rubens-depaula/site-ong.git
 cd site-ong
+npm install
 ```
 
-O projeto não utiliza gerenciador de pacotes nem possui dependências locais para instalar. A biblioteca Day.js é carregada diretamente por CDN nos documentos HTML.
+## Desenvolvimento
 
-Na raiz do projeto, inicie um servidor HTTP local:
+Inicie o servidor de desenvolvimento:
 
 ```bash
-python3 -m http.server 8080
+npm run dev
 ```
 
-Depois acesse no navegador:
+A aplicação pode então ser acessada em `/html/index.html` no endereço exibido pelo Vite.
 
-```text
-http://localhost:8080/html/index.html
+## Verificação de sintaxe
+
+```bash
+npm run check
 ```
 
-O servidor local é necessário porque a SPA utiliza `fetch()` e ES Modules, recursos que devem ser testados em contexto HTTP em vez de abrir os arquivos diretamente com `file://`.
+O script utiliza `node --check` nos principais módulos JavaScript do projeto.
 
-## Build
+## Build de produção
 
-Não existe etapa de build nesta versão. HTML, CSS e JavaScript são servidos diretamente pelo navegador. A preparação para produção pode incluir posteriormente minificação, compressão e otimização dos recursos estáticos.
+```bash
+npm run build
+```
+
+O Vite processa as três páginas da aplicação e gera a saída otimizada no diretório `dist/`.
+
+O processo inclui bundling dos módulos JavaScript, minificação de HTML, CSS e JavaScript, processamento dos recursos estáticos e geração de arquivos com hash.
+
+Na medição final, os arquivos HTML, CSS e JavaScript passaram de 51.008 bytes no código-fonte para 32.090 bytes na build, uma redução aproximada de 37,09%. As imagens não foram incluídas nessa medição.
+
+## Preview da build
+
+```bash
+npm run preview
+```
+
+A versão de produção pode ser acessada em `/html/index.html` no endereço exibido pelo Vite Preview.
+
+## Otimização de imagens
+
+A aplicação utiliza `<picture>` para disponibilizar formatos modernos com fallback:
+
+- PNG: 2.149.368 bytes
+- WebP: 209.200 bytes
+- AVIF: 179.514 bytes
+
+A versão AVIF apresenta redução aproximada de 91,6% em relação ao PNG original.
+
+## Acessibilidade
+
+Entre as práticas implementadas estão:
+
+- HTML semântico
+- textos alternativos em imagens
+- estados de foco visíveis
+- navegação por teclado
+- skip link para o conteúdo principal
+- `aria-label`
+- `aria-expanded`
+- `aria-controls`
+- `aria-current`
+- `aria-invalid`
+- `aria-describedby`
+- mensagens com `role="status"` e `aria-live`
+- fechamento do menu mobile com `Escape` e retorno de foco
+- `prefers-reduced-motion`
+- modo escuro e alto contraste
+
+O menu mobile utiliza um elemento `<button>` nativo em vez de um checkbox para controlar a interação.
 
 ## Testes e validação
 
-Os testes atuais são manuais e incluem:
+Foram realizados testes de:
 
-- navegação entre Início, Projetos e Cadastro sem recarregamento completo;
-- funcionamento dos botões Voltar e Avançar da History API;
-- renderização dos projetos por template JavaScript;
-- menu responsivo e navegação por teclado;
-- validação dos campos de formulário e feedback de erro/sucesso;
-- persistência de rotas e posição de rolagem no LocalStorage;
-- carregamento dos formatos PNG, WebP e AVIF.
+- navegação entre Início, Projetos e Cadastro
+- comportamento SPA e History API
+- botões Voltar e Avançar do navegador
+- âncoras internas
+- renderização dinâmica dos projetos
+- validação do formulário
+- mensagens de erro e sucesso
+- persistência de estado no LocalStorage
+- navegação somente por teclado
+- skip link
+- menu mobile e tecla `Escape`
+- modo escuro e alto contraste
+- build e preview de produção
 
-Para verificar sintaxe JavaScript com Node.js, quando disponível:
+A sintaxe JavaScript também é verificada com `npm run check`.
 
-```bash
-node --check js/main.js
-node --check js/modules/router.js
-node --check js/modules/storage.js
-node --check js/modules/projects.js
-node --check js/modules/form.js
-node --check js/modules/ui.js
+## Deploy
+
+O projeto está configurado para publicação no Netlify por meio do arquivo `netlify.toml`:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/"
+  to = "/html/index.html"
+  status = 302
 ```
 
-Os arquivos HTML também podem ser submetidos ao W3C HTML Checker para validação estrutural.
+Com a integração do repositório GitHub ao Netlify, a branch de produção pode gerar automaticamente uma nova build e publicação.
 
 ## Controle de versão
 
 O projeto utiliza Git com uma estratégia inspirada em GitFlow:
 
-- `main`: versão estável e pronta para publicação;
-- `develop`: integração das funcionalidades em desenvolvimento;
-- `feature/*`: desenvolvimento isolado de novas funcionalidades;
-- `hotfix/*`: correções urgentes em versões estáveis.
+- `main`: versão estável e pronta para publicação
+- `develop`: integração das funcionalidades
+- `feature/*`: desenvolvimento isolado de funcionalidades
+- `hotfix/*`: correções urgentes em produção
 
-As mensagens de commit seguem o padrão Conventional Commits, com prefixos como `feat:`, `fix:`, `docs:`, `refactor:` e `chore:`. Alterações desenvolvidas em branches secundárias são integradas por pull requests antes do merge.
-
-## Acessibilidade
-
-O projeto prioriza HTML semântico, textos alternativos em imagens, estados de foco visíveis, suporte à navegação por teclado, atributos ARIA quando necessários e feedback textual nos formulários. A revisão final considera as diretrizes WCAG 2.1 nível AA aplicáveis ao escopo acadêmico.
+As alterações são integradas por Pull Requests. As mensagens de commit seguem Conventional Commits, com prefixos como `feat:`, `fix:`, `docs:`, `build:`, `ci:`, `refactor:` e `chore:`.
 
 ## Versionamento
 
 As releases seguem Semantic Versioning (`MAJOR.MINOR.PATCH`). A tag `v1.0.0` representa a primeira versão estável do projeto.
 
-- `MAJOR`: alterações incompatíveis com versões anteriores;
-- `MINOR`: novas funcionalidades compatíveis;
-- `PATCH`: correções compatíveis.
+Após a integração das melhorias de build, acessibilidade, tema e deploy, uma nova release pode ser criada seguindo a mesma estratégia de versionamento.
 
-As versões estáveis são identificadas por tags Git, permitindo relacionar cada entrega ao histórico de commits correspondente.
+## Autor
+
+Rubens de Paula
+
+Projeto desenvolvido para atividade acadêmica de desenvolvimento front-end.
